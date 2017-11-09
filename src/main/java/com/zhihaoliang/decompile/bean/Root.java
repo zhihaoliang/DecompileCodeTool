@@ -3,6 +3,7 @@ package com.zhihaoliang.decompile.bean;
 
 /**
  * Created by haoliang on 2017/11/7.
+ * 解析Config.xml
  */
 public class Root {
     /**
@@ -21,4 +22,5 @@ public class Root {
     public String getDestPath() {
         return destPath;
     }
+
 }
