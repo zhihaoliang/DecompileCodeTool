@@ -1,12 +1,6 @@
 package com.zhihaoliang.decompile;
 
-import com.thoughtworks.xstream.XStream;
-import com.zhihaoliang.decompile.bean.Root;
-
-import java.io.*;
 import java.util.ArrayList;
-
-import static com.zhihaoliang.decompile.util.MD5.MD5Encode;
 
 /**
  * Created by haoliang on 2017/10/16.

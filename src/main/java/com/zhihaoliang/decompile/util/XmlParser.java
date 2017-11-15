@@ -1,11 +1,9 @@
 package com.zhihaoliang.decompile.util;
 
-import com.thoughtworks.xstream.XStream;
-import com.zhihaoliang.decompile.bean.Root;
+import com.zhihaoliang.decompile.bean.ConfigBean;
+import org.simpleframework.xml.core.Persister;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 /**
  * Created by haoliang on 2017/11/9.
@@ -13,25 +11,33 @@ import java.io.FileNotFoundException;
  *
  * @author zhihaoliang
  */
-public class XmlParser {
-    public static final Root prepareParser() {
-        File file = new File("Config.xml");
-        if (!file.exists()) {
-            Log.println("文件Config.xml不存在");
-            return null;
-        }
-        try {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            XStream xstr = new XStream();
-            xstr.alias("root", Root.class);
-            return (Root) xstr.fromXML(fileInputStream);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            Log.println("文件Config.xml不存在");
+public class XmlParser<T> {
 
-        }catch (Exception e){
-            Log.println("文件Config.xml格式错误");
+    private static  XmlParser instance;
+
+
+    public static XmlParser getInstance(){
+        if(instance == null){
+            synchronized (XmlParser.class){
+                if(instance == null){
+                    instance = new XmlParser();
+                }
+            }
+        }
+        return instance;
+    }
+
+    public final T parser(String filePath, T t){
+        try {
+            return (T) new Persister().read(t.getClass(),new File(filePath));
+        } catch (Exception e) {
+            Log.println(String.format("文件%s解析失败,失败原因%s",filePath,e.toString()));
         }
         return null;
     }
+
+    public static final void main(String[] args){
+        Log.println(getInstance().parser("Config.xml", new ConfigBean()));
+    }
+
 }

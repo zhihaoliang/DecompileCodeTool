@@ -1,9 +1,5 @@
 package com.zhihaoliang.decompile;
 
-import com.zhihaoliang.decompile.bean.Root;
-
-import java.util.ArrayList;
-
 /**
  * Created by haoliang on 2017/11/9.
  * email:zhihaoliang07@163.com
@@ -28,6 +24,10 @@ public interface Config {
      */
     String DRAW = "drawable";
     /**
+     * Android 工程中draw的路径
+     */
+    String MIPMAP = "mipmap";
+    /**
      * Android 工程中layout的路径
      */
     String LAYOUT = "layout";
@@ -42,6 +42,16 @@ public interface Config {
     /**
      * 表示存储字符串的路径
      */
-    String STRING = "strings";
+    String STRINGS = "strings";
+    /**
+     * 表示存储字符串的路径
+     */
+    String STRING = "string";
+
+    String ERROR = "erro";
+
+    String FIND_FILE = "findFile";
+
+    String DIMEN = "dimen";
 
 }

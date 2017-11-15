@@ -1,176 +1,153 @@
 package com.zhihaoliang.decompile.util;
 
 import com.zhihaoliang.decompile.Config;
-import com.zhihaoliang.decompile.bean.Result;
-import com.zhihaoliang.decompile.bean.Root;
+import com.zhihaoliang.decompile.bean.ConfigBean;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by haoliang on 2017/11/9.
  * email:zhihaoliang07@163.com
  *
  * @author zhihaoliang
- *
- * 用于文件的寻找
+ *         <p>
+ *         用于文件的寻找
  */
 public class FileFind {
 
+
     /**
-     * @param file 需要搜索的文件
-     * @param content 需要搜索的内容
-     * @return 返回合适的要copy文件的行数，行的内容
+     * 根据名字进行搜索的文件
+     *
+     * @param systemIn   表示要要解析的字符
+     * @param configBean 表示存放目标目录和操作的的目录
      */
-    public final static Result readLineFile(File file, String[] content) {
+    public static void fileFind(String systemIn, ConfigBean configBean) {
+        File file = new File(configBean.getSrcPath(), "res");
+        ArrayList<String> arrayList = findFileByName(file, systemIn);
+        Log.println(arrayList);
 
-        try {
-            FileInputStream in = new FileInputStream(file.getAbsolutePath());
-            InputStreamReader inReader = new InputStreamReader(in, "UTF-8");
-            BufferedReader bufReader = new BufferedReader(inReader);
-            String line ;
-            int i = 0;
-            OUT:
-            while ((line = bufReader.readLine()) != null) {
-                for (String s : content) {
-                    if (!line.contains(s)) {
-                        continue OUT;
-                    }
-                }
+    }
 
-                System.out.println(file.getPath() + ": 第" + i + "行：" + line);
+    /**
+     * 根据名字进行在特定的文件搜索的文件
+     *
+     * @param systemIn   表示用户输入的字段
+     * @param configBean 表示存放目标目录和操作的的目录
+     */
+    public static ArrayList<String> fileFind(String[] systemIn, ConfigBean configBean) {
+        File dirRes = new File(configBean.getSrcPath(), "res");
+        String[] searchDirs = dirRes.list(new MyFileFilter(systemIn[0], MyFileFilter.ST_PREFIX));
+        return getFileByName(dirRes, searchDirs, systemIn[1], MyFileFilter.ST_NAME);
+    }
 
-            }
-            bufReader.close();
-            inReader.close();
-            in.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("读取" + file.getAbsolutePath() + "出错！");
+    /**
+     * @param path 项目的目录，其子目录包含res
+     * @return 返回value下面所有的问题件
+     */
+    public static ArrayList<String> fileValueFind(String path) {
+        File dirRes = new File(path, "res");
+        String[] searchDirs = dirRes.list(new MyFileFilter(Config.VALUES, MyFileFilter.ST_PREFIX));
+        return getFileByName(dirRes, searchDirs, null, MyFileFilter.ST_NO);
+    }
+
+    /**
+     * @param file 表示要搜索的文件件
+     * @param name 表示要搜索的文件的名字
+     * @return 返回符合条件的所有的列表
+     */
+    private static ArrayList<String> findFileByName(File file, String name) {
+        ArrayList<String> arrayList = new ArrayList<>();
+        int index = name.indexOf(".");
+        boolean isSuffix = false;
+        if (index != -1) {
+            isSuffix = true;
         }
-        return null;
+        findFileByName(file, name, arrayList, isSuffix);
+        return arrayList;
+
     }
 
 
     /**
-     * 根据前缀获取获取文件的路径
-     * @param parentFile 父文件夹
-     * @param fileNames 表示文件的名称
-     * @param content 所有搜索的对象
-     * @return
+     * @param file      表示要搜索的文件件
+     * @param name      表示要搜索的文件的名字
+     * @param filePaths 存储合适的文件
+     * @param isSuffix  要搜索的文件的文件是否包含后缀，true表示包含后缀，false表示不包含后缀
      */
-    public static final ArrayList<String> getFileByName(File parentFile,String[] fileNames,String content){
+    private static void findFileByName(File file, String name, ArrayList<String> filePaths, boolean isSuffix) {
+        String[] fileChirlds = file.list();
+        if (fileChirlds == null) {
+            return;
+        }
+        for (String fileChirld : fileChirlds) {
+            if (fileChirld == null) continue;
+            File fileTemp = new File(file, fileChirld);
+            if (fileTemp.isDirectory()) findFileByName(fileTemp, name, filePaths, isSuffix);
+            else {
+                if (isAccordFileName(name, fileChirld, isSuffix)) filePaths.add(fileTemp.getPath());
+            }
+        }
+    }
+
+    /**
+     * 根据前缀获取获取文件的路径
+     *
+     * @param parentFile 父文件夹 如果为空fileNames为存储的为全路径
+     * @param fileNames  表示文件的名称
+     * @param content    所有搜索的对象
+     * @param filterType 过滤器类型
+     * @return 获取符合条件的文件列表
+     */
+    private static ArrayList<String> getFileByName(File parentFile, String[] fileNames, String content, int filterType) {
         ArrayList<String> arrayList = new ArrayList<>();
         for (String fileName : fileNames) {
-            File file = new File(parentFile,fileName);
-            String[]list = file.list(new MyFileFilter(content,MyFileFilter.ST_NAME));
-            for (String s : list) {
-                File temp = new File(file,s);
-                arrayList.add(temp.getAbsolutePath());
+            File file = parentFile == null ? new File(fileName) : new File(parentFile, fileName);
+            if (file.isDirectory()) {
+                String[] list = filterType == MyFileFilter.ST_NO ? file.list() : file.list(new MyFileFilter(content, filterType));
+                if (list != null) {
+                    for (String s : list) {
+                        File temp = new File(file, s);
+                        arrayList.add(temp.getAbsolutePath());
+                    }
+                }
+            } else {
+                String name = file.getName();
+                if (content.equals(MyFileFilter.getFileName(name))) {
+                    arrayList.add(file.getAbsolutePath());
+                }
             }
+
 
         }
         return arrayList;
     }
 
     /**
-     * 根据前缀返回适合的文件列表
-     * @param parentPath 传入的路径 最后的的路径是res
-     * @param @drawable/so  @后面 "/"前面的字段
-     * @return 返回所有适合的路径
+     * @param name     要搜索文件的名字
+     * @param fileName 文件的名字
+     * @param isSuffix 要搜索的文件的文件是否包含后缀，true表示包含后缀，false表示不包含后缀
+     * @return true 表示符合，false表示不符合
      */
-    public static final String[] getPrefix(String parentPath, String arg){
-        switch (arg){
-            case Config.VALUES:
-            case Config.DRAW:
-                File file = new File(parentPath);
-                return file.list(new MyFileFilter(arg,MyFileFilter.ST_PREFIX));
-
+    private static boolean isAccordFileName(String name, String fileName, boolean isSuffix) {
+        if (isSuffix) {
+            return fileName.equals(name);
+        } else {
+            return name.equals(getFileName(fileName));
         }
-        return null;
     }
 
     /**
-     * 用于分割用户输入的字段
-     * @param arg 用户输入的第一个参数
-     * @return 返回分割后的字符串数组
+     * @param fileName 去掉文件名字的后缀
+     * @return 返回文件后缀的名字
      */
-    public static final String[] splitPath(String arg){
-        if (arg.contains("@") && arg.contains("/")) {
-            arg = arg.replaceAll("@", "");
-            String[] array = arg.split("/");
-            return array;
+    private static String getFileName(String fileName) {
+        int index = fileName.indexOf(".");
+        if (index != -1) {
+            return fileName.substring(0, index);
         }
-        return new String[]{arg};
-    }
-
-    public static final void inLine() {
-        // 要验证的字符串
-        String str = "<string name=\"ja\">该分类下暂无%s哦</string>";
-        // 邮箱验证规则
-       // String regEx = String.format("*<%s*name*=*%s*</*%s>","string","ja","string");
-        String regEx ="^[*]";
-        Log.println(regEx);
-        // 编译正则表达式
-        Pattern pattern = Pattern.compile(regEx);
-        // 忽略大小写的写法
-        // Pattern pat = Pattern.compile(regEx, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(str);
-        // 字符串是否与正则表达式相匹配
-        boolean rs = matcher.matches();
-        System.out.println(rs);
-    }
-
-    /**
-     * 用于此文件的测试
-     * @param args 接受用户的输入
-     */
-    public static final void main(String[]args){
-       // doDraw();
-        //doString();
-        inLine();
-    }
-
-    /**
-     * 用于测试draw
-     */
-    private static final void doDraw(){
-        String[] contents = splitPath("@drawable/so");
-        Log.println(contents);
-        Root root = XmlParser.prepareParser();
-        if(root == null){
-            return;
-        }
-        File file = new File(new File(root.getSrcPath()),Config.RES);
-        String[] drawDirs = getPrefix(file.getPath(),contents[0]);
-        Log.println(drawDirs);
-
-        ArrayList<String> arrayList = getFileByName(file,drawDirs,contents[1]);
-        Log.println(arrayList);
-    }
-
-    /**
-     * 用于测试String
-     *
-     */
-    public static final void doString(){
-        String[] contents = splitPath("@string/avk");
-        Log.println(contents);
-        Root root = XmlParser.prepareParser();
-        if(root == null){
-            return;
-        }
-        File file = new File(new File(root.getSrcPath()),Config.RES);
-        String[] valueDirs = getPrefix(file.getPath(),Config.VALUES);
-        Log.println(valueDirs);
-
-        ArrayList<String> arrayList = getFileByName(file,valueDirs,Config.STRING);
-        Log.println(arrayList);
-
-
+        return fileName;
     }
 
 

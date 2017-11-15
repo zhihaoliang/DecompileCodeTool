@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <root>
     <srcPath>/Users/haoliang/Desktop/jingdong/jingdong_52563</srcPath>
-  <!--  <destPath>/Users/haoliang/github/BasicFrame/app/src/main</destPath>-->
+    <!--  <destPath>/Users/haoliang/github/BasicFrame/app/src/main</destPath>-->
     <destPath>/Users/haoliang/Desktop/temp</destPath>
-
+    <string>strings</string>
 </root>

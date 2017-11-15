@@ -1,5 +1,8 @@
 package com.zhihaoliang.decompile.bean;
 
+
+import java.util.ArrayList;
+
 /**
  * Created by haoliang on 2017/11/9.
  * email:zhihaoliang07@163.com
@@ -26,19 +29,36 @@ public class Result {
         this.line = line;
     }
 
+    public Result(String path) {
+        this.path = path;
+    }
+
     public String getPath() {
         return path;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public static ArrayList<Result> setResult(String[] contents){
+        ArrayList<Result> results = new ArrayList<>();
+        if(contents == null || contents.length ==0){
+            return results;
+        }
+
+        for (String content : contents) {
+            results.add(new Result(content));
+        }
+        return results;
     }
 
-    public String getLine() {
-        return line;
+    public static ArrayList<Result> setResult(ArrayList<String>contents ){
+        ArrayList<Result> results = new ArrayList<>();
+        if(contents == null || contents.size() ==0){
+            return results;
+        }
+
+        for (String content : contents) {
+            results.add(new Result(content));
+        }
+        return results;
     }
 
-    public void setLine(String line) {
-        this.line = line;
-    }
 }

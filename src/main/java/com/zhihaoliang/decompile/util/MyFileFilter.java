@@ -31,9 +31,21 @@ public class MyFileFilter implements FilenameFilter {
      */
     public static final int ST_NAME = 1;
     /**
-     * 根据文件内容 过滤
+     * 表示没有过滤
      */
-    public static final int ST_CONTENT = 2;
+    public static final int ST_NO = -1;
+    /**
+     * 表示除了dimens，public，styles，ids，raw
+     */
+    public static final int ST_OTHER = 2;
+
+    private static final String[]OTHER={
+            "dimens",
+            "public",
+            "styles",
+            "ids",
+            "raw",
+    };
 
 
     public MyFileFilter(String content, int state) {
@@ -46,18 +58,13 @@ public class MyFileFilter implements FilenameFilter {
      * @param fileName 文件的名称
      * @return 文件名称去掉"."之后的文字
      */
-    private static String getFileName(String fileName) {
-        int index = fileName.lastIndexOf(".");
+    public static String getFileName(String fileName) {
+        int index = fileName.indexOf(".");
         if (index == -1) {
             return fileName;
         }
-
         return fileName.substring(0, index);
 
-    }
-
-    public static final void main(String[] args) {
-        Log.println(getFileName("hello.txt"));
     }
 
     @Override
@@ -67,9 +74,23 @@ public class MyFileFilter implements FilenameFilter {
                 return name.startsWith(mContent);
             case ST_NAME:
                 return mContent.equals(getFileName(name));
-            case ST_CONTENT:
-                return true;
+            case ST_OTHER:
+                return !isInOther(name);
         }
         return false;
+    }
+
+    private static final boolean isInOther(String name){
+        for (String s : OTHER) {
+            if(s.equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static final void main(String[] args) {
+        Log.println(getFileName("hello.txt"));
+        Log.println(getFileName("hello1.txt"));
     }
 }
