@@ -1,4 +1,4 @@
-package com.zhihaoliang.decompile.bean;
+package com.zhihaoliang.decompile.bean.res;
 
 import com.zhihaoliang.decompile.bean.res.ResColor;
 import com.zhihaoliang.decompile.bean.res.ResDimen;

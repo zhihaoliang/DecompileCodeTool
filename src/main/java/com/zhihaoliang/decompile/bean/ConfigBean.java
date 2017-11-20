@@ -24,9 +24,6 @@ public class ConfigBean {
     @Element(name = "destPath")
     private String destPath;
 
-    @ElementList(inline = true, entry = "string", required = false)
-    public ArrayList<String> strings;
-
     public String getSrcPath() {
         return srcPath;
     }
@@ -35,14 +32,4 @@ public class ConfigBean {
         return destPath;
     }
 
-    public ArrayList<String> getStrings() {
-        if (strings == null) {
-            strings = new ArrayList<>();
-        }
-
-        if (strings.size() == 0) {
-            strings.add("strings");
-        }
-        return strings;
-    }
 }

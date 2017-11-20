@@ -1,16 +1,16 @@
 package com.zhihaoliang.decompile;
 
+import com.zhihaoliang.decompile.bean.ArgBean;
 import com.zhihaoliang.decompile.bean.ConfigBean;
+import com.zhihaoliang.decompile.bean.copy.CopyBean;
 import com.zhihaoliang.decompile.bean.res.ResColor;
 import com.zhihaoliang.decompile.bean.res.ResDimen;
 import com.zhihaoliang.decompile.bean.res.ResString;
-import com.zhihaoliang.decompile.bean.Resources;
+import com.zhihaoliang.decompile.bean.res.Resources;
 import com.zhihaoliang.decompile.bean.res.base.Res;
-import com.zhihaoliang.decompile.util.Arg;
-import com.zhihaoliang.decompile.util.FileFind;
-import com.zhihaoliang.decompile.util.Log;
-import com.zhihaoliang.decompile.util.XmlParser;
+import com.zhihaoliang.decompile.util.*;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -69,16 +69,18 @@ public class Load {
      */
     private static final ArrayList<Resources> DEST_COLOR = new ArrayList<>();
 
+    private static CopyBean sCopyBean;
+
+
+    private static String sCopyFilePath;
+
     public static final void main(String[] args) {
         if (CONFIG_BEAN == null) {
             return;
         }
 
-        CONFIG_BEAN.getStrings();
         Log.println("加载中...");
-
         load();
-
         Log.println("加载完成");
         Log.println(USER_USE);
 
@@ -89,17 +91,18 @@ public class Load {
                 Log.println("程序解析完成");
                 return;
             }
-            args = Arg.getArgs(read);
-            Log.println(args);
-            if (args == null) {
-                Log.println(USER_USE);
-            } else {
-                oprateSystemLine(args);
-            }
+            oprateSystemLine(read);
         }
     }
 
     private static void load() {
+        String copyName = MD5.MD5Encode(CONFIG_BEAN.getSrcPath() + CONFIG_BEAN.getDestPath()) + ".xml";
+        File file = new File(new File(CONFIG_BEAN.getSrcPath()), copyName);
+        sCopyFilePath = file.getAbsolutePath();
+        sCopyBean = XmlParser.getInstance().parser(sCopyFilePath);
+        if (sCopyBean == null) {
+            sCopyBean = new CopyBean();
+        }
         ArrayList<String> arrayList = FileFind.fileValueFind(CONFIG_BEAN.getSrcPath());
         for (String s : arrayList) {
             Resources res = (Resources) XmlParser.getInstance().parser(s, new Resources());
@@ -154,31 +157,31 @@ public class Load {
     }
 
 
-    private static void oprateSystemLine(String[] systemLine) {
-        String[] state = Arg.checkSystemLine(systemLine[0]);
-        boolean isCopy = Boolean.parseBoolean(systemLine[1]);
-        switch (state[0]) {
+    private static void oprateSystemLine(String systemLine) {
+        ArgBean argBean = Arg.initArgs(systemLine);
+        switch (argBean.getState()) {
             case Config.FIND_FILE:
-                FileFind.fileFind(systemLine[0], CONFIG_BEAN);
+                ArrayList<String> arrayList = FileFind.fileFind(argBean.getOldName(), CONFIG_BEAN);
+                copyFile(arrayList, argBean);
                 break;
             case Config.DRAW:
             case Config.LAYOUT:
             case Config.MIPMAP:
-                ArrayList<String> arrayList = FileFind.fileFind(state, CONFIG_BEAN);
-                Log.println(arrayList);
+                arrayList = FileFind.fileFind(argBean, CONFIG_BEAN);
+                copyFile(arrayList, argBean);
                 break;
             case Config.STRING:
             case Config.DIMEN:
-                ArrayList<Res> resList = getRes(state, false);
+                ArrayList<Res> resList = getRes(argBean, false);
                 Log.println(resList);
                 break;
             case Config.COLOR:
-                ArrayList<String> files = FileFind.fileFind(state, CONFIG_BEAN);
+                ArrayList<String> files = FileFind.fileFind(argBean, CONFIG_BEAN);
                 if (files == null || files.size() == 0) {
-                    resList = getRes(state, false);
+                    resList = getRes(argBean, false);
                     Log.println(resList);
                 } else {
-                    Log.println(files);
+                    copyFile(files, argBean);
                 }
                 break;
             default:
@@ -187,15 +190,15 @@ public class Load {
         }
     }
 
-    private static ArrayList<Res> getRes(String[] state, boolean isDest) {
+    private static ArrayList<Res> getRes(ArgBean argbean, boolean isDest) {
         ArrayList<Res> resList = new ArrayList<>();
 
-        ArrayList<Resources> resourcesList = getResources(state[0], isDest);
+        ArrayList<Resources> resourcesList = getResources(argbean.getState(), isDest);
         for (Resources resources : resourcesList) {
-            ArrayList list = getResources(state[0], resources);
+            ArrayList list = getResources(argbean.getState(), resources);
             for (Object item : list) {
                 Res res = (Res) item;
-                if (state[1].equals(res.getName())) {
+                if (argbean.getOldName().equals(res.getName())) {
                     res.setFilePath(resources.getFilePath());
                     resList.add(res);
                 }
@@ -242,6 +245,71 @@ public class Load {
 
         }
         return null;
+    }
+
+
+    private static void copyFile(ArrayList<String> arrayList, ArgBean argBean) {
+        if (!argBean.isCopy()) {
+            Log.println(arrayList);
+            return;
+        }
+
+        if (arrayList == null || arrayList.size() == 0) {
+            Log.println("没有找到要拷贝的文件");
+            return;
+        }
+
+        ArgBean argBeanResult = Check.splitCopyAndNo(sCopyBean.getArgBeans(), argBean);
+
+
+
+        if (argBeanResult != null) {
+            Log.printlnXML(argBeanResult);
+            //用于换行
+            Log.println("");
+            return;
+        }
+
+
+        String[] destFiles = new String[arrayList.size()];
+        for (int i = 0; i < arrayList.size(); i++) {
+            destFiles[i] = arrayList.get(i).replace(CONFIG_BEAN.getSrcPath(), CONFIG_BEAN.getDestPath());
+            File file = new File(destFiles[i]);
+            String name = file.getName();
+            String destName = name.replace(argBean.getOldName(), argBean.getNewName());
+            File fileDest = new File(file.getParentFile(),destName);
+            Log.println(fileDest.getAbsoluteFile());
+            if(fileDest.exists()){
+                Log.println(String.format("文件%s已存在，停止拷贝操作",fileDest.getAbsolutePath()));
+                return;
+            }
+            destFiles[i] = fileDest.getAbsolutePath();
+        }
+
+
+
+        boolean isCopyFaile = false;
+        for (int i = 0; i < destFiles.length; i++) {
+            if(!FileWrite.copyFile(arrayList.get(i),destFiles[i])){
+                isCopyFaile = true;
+            }
+        }
+
+        //如果有文件Copy失败，删除所有已经Copy的文件
+        if(isCopyFaile){
+            for (String destFile : destFiles) {
+                File file = new File(destFile);
+                if(file.exists()){
+                    file.delete();
+                }
+            }
+        }else{
+            sCopyBean.addCopyFile(argBean);
+            FileWrite.writeFile(sCopyFilePath,sCopyBean);
+        }
+
+
+
     }
 
 

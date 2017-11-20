@@ -1,6 +1,7 @@
 package com.zhihaoliang.decompile.util;
 
 import com.zhihaoliang.decompile.Config;
+import com.zhihaoliang.decompile.bean.ArgBean;
 import com.zhihaoliang.decompile.bean.ConfigBean;
 
 import java.io.*;
@@ -23,23 +24,22 @@ public class FileFind {
      * @param systemIn   表示要要解析的字符
      * @param configBean 表示存放目标目录和操作的的目录
      */
-    public static void fileFind(String systemIn, ConfigBean configBean) {
+    public static ArrayList<String> fileFind(String systemIn, ConfigBean configBean) {
         File file = new File(configBean.getSrcPath(), "res");
         ArrayList<String> arrayList = findFileByName(file, systemIn);
-        Log.println(arrayList);
-
+        return arrayList;
     }
 
     /**
      * 根据名字进行在特定的文件搜索的文件
      *
-     * @param systemIn   表示用户输入的字段
+     * @param argBean   表示用户输入的字段
      * @param configBean 表示存放目标目录和操作的的目录
      */
-    public static ArrayList<String> fileFind(String[] systemIn, ConfigBean configBean) {
+    public static ArrayList<String> fileFind(ArgBean argBean, ConfigBean configBean) {
         File dirRes = new File(configBean.getSrcPath(), "res");
-        String[] searchDirs = dirRes.list(new MyFileFilter(systemIn[0], MyFileFilter.ST_PREFIX));
-        return getFileByName(dirRes, searchDirs, systemIn[1], MyFileFilter.ST_NAME);
+        String[] searchDirs = dirRes.list(new MyFileFilter(argBean.getState(), MyFileFilter.ST_PREFIX));
+        return getFileByName(dirRes, searchDirs, argBean.getOldName(), MyFileFilter.ST_NAME);
     }
 
     /**

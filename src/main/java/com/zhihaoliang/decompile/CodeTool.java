@@ -18,7 +18,7 @@ public class CodeTool {
     }
 
 /*
-    private String mCopyName;
+    private String mCopyName;ƒƒ
 
 
 
