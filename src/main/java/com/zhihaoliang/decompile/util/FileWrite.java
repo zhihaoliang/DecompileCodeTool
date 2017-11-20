@@ -1,13 +1,9 @@
 package com.zhihaoliang.decompile.util;
 
-import com.zhihaoliang.decompile.bean.ConfigBean;
-import com.zhihaoliang.decompile.bean.copy.CopyBean;
-import com.zhihaoliang.decompile.bean.copy.CopyFile;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
 import java.io.*;
-import java.util.ArrayList;
 
 /**
  * Created by haoliang on 2017/11/9.
@@ -25,7 +21,16 @@ public class FileWrite {
     public static boolean writeFile(String filePath, Object object) {
 
         File result = new File(filePath);
+        File parentFile = result.getParentFile();
         try {
+
+            if (!parentFile.exists()) {
+                parentFile.mkdirs();
+            }
+
+            if (!result.exists()) {
+                result.createNewFile();
+            }
             Serializer serializer = new Persister();
             serializer.write(object, result);
             return true;
@@ -91,27 +96,6 @@ public class FileWrite {
         }
         Log.println(String.format("文件%s拷贝到%s成功", sourcePath, destPath));
         return true;
-    }
-
-
-    public static final void main(String[] args) {
-        ConfigBean configBean = (ConfigBean) XmlParser.getInstance().parser("Config.xml",new ConfigBean());
-        String copyName = MD5.MD5Encode(configBean.getSrcPath() + configBean.getDestPath()) + ".xml";
-        File file = new File(new File(configBean.getSrcPath()), copyName);
-        String copyFilePath = file.getAbsolutePath();
-
-        CopyBean copyBean = new CopyBean();
-        ArrayList<CopyFile> copyFiles = new ArrayList<>();
-        CopyFile copyFile = new CopyFile("destpath","srcPath");
-        CopyFile copyFile1 = new CopyFile("destpath1","srcPath1");
-        CopyFile copyFile2 = new CopyFile("destpath2","srcPath1");
-        copyFiles.add(copyFile);
-        copyFiles.add(copyFile2);
-        copyFiles.add(copyFile1);
-
-        Log.println(copyBean);
-        writeFile(copyFilePath,copyBean);
-
     }
 
 }

@@ -58,9 +58,7 @@ public class Arg {
      * @return 返回 解析后输入
      */
     public static ArgBean initArgs(String systemLine) {
-
         ArgBean argBean = new ArgBean();
-
         String[] args = getArgs(systemLine);
         if (args == null || args[0].endsWith("/")) {
             argBean.setState(Config.ERROR);

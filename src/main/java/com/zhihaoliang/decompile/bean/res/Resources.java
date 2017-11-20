@@ -1,8 +1,6 @@
 package com.zhihaoliang.decompile.bean.res;
 
-import com.zhihaoliang.decompile.bean.res.ResColor;
-import com.zhihaoliang.decompile.bean.res.ResDimen;
-import com.zhihaoliang.decompile.bean.res.ResString;
+import com.zhihaoliang.decompile.Config;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
@@ -27,29 +25,29 @@ public class Resources {
      * 的集合
      */
     @ElementList(inline = true, entry = "string",required = false)
-    private ArrayList<ResString> strings;
+    private ArrayList<Res> strings;
     /**
      * <dimen name="r">27.0dip</dimen>
      * 的集合
      */
     @ElementList(inline = true, entry = "dimen",required = false)
-    private ArrayList<ResDimen> dimens;
+    private ArrayList<Res> dimens;
     /**
      * <color name="a">#ff252525</color>
      * 的集合
      */
     @ElementList(inline = true, entry = "color",required = false)
-    private ArrayList<ResColor> colors;
+    private ArrayList<Res> colors;
 
-    public ArrayList<ResString> getStrings() {
+    public ArrayList<Res> getStrings() {
         return strings;
     }
 
-    public ArrayList<ResDimen> getDimens() {
+    public ArrayList<Res> getDimens() {
         return dimens;
     }
 
-    public ArrayList<ResColor> getColors() {
+    public ArrayList<Res> getColors() {
         return colors;
     }
 
@@ -61,5 +59,28 @@ public class Resources {
         this.filePath = filePath;
     }
 
+    public void addRes(Res res,String state){
+
+        switch (state){
+            case Config.STRING:
+                if(strings == null){
+                    strings = new ArrayList<>();
+                }
+                strings.add(res);
+                break;
+            case Config.COLOR:
+                if(colors == null){
+                    colors = new ArrayList<>();
+                }
+                colors.add(res);
+                break;
+            case Config.DIMEN:
+                if(dimens == null){
+                    dimens = new ArrayList<>();
+                }
+                dimens.add(res);
+                break;
+        }
+    }
 
 }

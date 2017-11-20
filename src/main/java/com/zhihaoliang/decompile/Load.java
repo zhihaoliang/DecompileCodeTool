@@ -3,11 +3,8 @@ package com.zhihaoliang.decompile;
 import com.zhihaoliang.decompile.bean.ArgBean;
 import com.zhihaoliang.decompile.bean.ConfigBean;
 import com.zhihaoliang.decompile.bean.copy.CopyBean;
-import com.zhihaoliang.decompile.bean.res.ResColor;
-import com.zhihaoliang.decompile.bean.res.ResDimen;
-import com.zhihaoliang.decompile.bean.res.ResString;
 import com.zhihaoliang.decompile.bean.res.Resources;
-import com.zhihaoliang.decompile.bean.res.base.Res;
+import com.zhihaoliang.decompile.bean.res.Res;
 import com.zhihaoliang.decompile.util.*;
 
 import java.io.File;
@@ -111,24 +108,23 @@ public class Load {
             }
             res.setFilePath(s);
 
-            ArrayList<ResString> strings = res.getStrings();
+            ArrayList<Res> strings = res.getStrings();
             if (strings != null && strings.size() > 0) {
                 SRC_STR.add(res);
             }
 
-            ArrayList<ResDimen> dimens = res.getDimens();
+            ArrayList<Res> dimens = res.getDimens();
             if (dimens != null && dimens.size() > 0) {
                 SRC_DIMEN.add(res);
             }
 
-            ArrayList<ResColor> colors = res.getColors();
+            ArrayList<Res> colors = res.getColors();
             if (colors != null && colors.size() > 0) {
                 SRC_COLOR.add(res);
             }
 
             Log.println(String.format("原文件%s加载完成", s));
         }
-
         arrayList = FileFind.fileValueFind(CONFIG_BEAN.getDestPath());
         for (String s : arrayList) {
             Resources res = (Resources) XmlParser.getInstance().parser(s, new Resources());
@@ -137,17 +133,17 @@ public class Load {
             }
             res.setFilePath(s);
 
-            ArrayList<ResString> strings = res.getStrings();
+            ArrayList<Res> strings = res.getStrings();
             if (strings != null && strings.size() > 0) {
                 DEST_STR.add(res);
             }
 
-            ArrayList<ResDimen> dimens = res.getDimens();
+            ArrayList<Res> dimens = res.getDimens();
             if (dimens != null && dimens.size() > 0) {
                 DEST_DIMEN.add(res);
             }
 
-            ArrayList<ResColor> colors = res.getColors();
+            ArrayList<Res> colors = res.getColors();
             if (colors != null && colors.size() > 0) {
                 DEST_COLOR.add(res);
             }
@@ -173,13 +169,13 @@ public class Load {
             case Config.STRING:
             case Config.DIMEN:
                 ArrayList<Res> resList = getRes(argBean, false);
-                Log.println(resList);
+                copyContent(resList, argBean);
                 break;
             case Config.COLOR:
                 ArrayList<String> files = FileFind.fileFind(argBean, CONFIG_BEAN);
                 if (files == null || files.size() == 0) {
                     resList = getRes(argBean, false);
-                    Log.println(resList);
+                    copyContent(resList, argBean);
                 } else {
                     copyFile(files, argBean);
                 }
@@ -192,13 +188,12 @@ public class Load {
 
     private static ArrayList<Res> getRes(ArgBean argbean, boolean isDest) {
         ArrayList<Res> resList = new ArrayList<>();
-
+        String name = isDest ? argbean.getNewName() : argbean.getOldName();
         ArrayList<Resources> resourcesList = getResources(argbean.getState(), isDest);
         for (Resources resources : resourcesList) {
-            ArrayList list = getResources(argbean.getState(), resources);
-            for (Object item : list) {
-                Res res = (Res) item;
-                if (argbean.getOldName().equals(res.getName())) {
+            ArrayList<Res> list = getResources(argbean.getState(), resources);
+            for (Res res : list) {
+                if (name.equals(res.getName())) {
                     res.setFilePath(resources.getFilePath());
                     resList.add(res);
                 }
@@ -208,7 +203,7 @@ public class Load {
         return resList;
     }
 
-    private static ArrayList getResources(String state, Resources resources) {
+    private static ArrayList<Res> getResources(String state, Resources resources) {
         switch (state) {
             case Config.COLOR:
                 return resources.getColors();
@@ -247,6 +242,46 @@ public class Load {
         return null;
     }
 
+    private static void copyContent(ArrayList<Res> resList, ArgBean argBean) {
+        if (!argBean.isCopy()) {
+            Log.println(resList);
+            return;
+        }
+
+        if (resList == null || resList.size() == 0) {
+            Log.println("没有找到要拷贝的文件");
+            return;
+        }
+
+        ArgBean argBeanResult = Check.splitCopyAndNo(sCopyBean.getArgBeans(), argBean);
+
+        if(isOprate(argBeanResult)){
+            return;
+        }
+
+        ArrayList<Res> desList = getRes(argBean, true);
+        if (desList != null && desList.size() > 0) {
+            Log.println(String.format("名字\"%s\"已经存在当前文件中：",argBean.getNewName()));
+            Log.printlnXML(argBean);
+            Log.println("");
+            return;
+        }
+
+
+        for (Res res : resList) {
+            String destFilePath = res.getFilePath().replace(CONFIG_BEAN.getSrcPath(), CONFIG_BEAN.getDestPath());
+            Resources resource = (Resources) XmlParser.getInstance().parser(destFilePath, new Resources());
+            if (resource == null) {
+                resource = new Resources();
+            }
+            resource.addRes(res, argBean.getState());
+            FileWrite.writeFile(destFilePath, resource);
+        }
+
+        sCopyBean.addCopyFile(argBean);
+        FileWrite.writeFile(sCopyFilePath, sCopyBean);
+
+    }
 
     private static void copyFile(ArrayList<String> arrayList, ArgBean argBean) {
         if (!argBean.isCopy()) {
@@ -260,13 +295,7 @@ public class Load {
         }
 
         ArgBean argBeanResult = Check.splitCopyAndNo(sCopyBean.getArgBeans(), argBean);
-
-
-
-        if (argBeanResult != null) {
-            Log.printlnXML(argBeanResult);
-            //用于换行
-            Log.println("");
+        if(isOprate(argBeanResult)){
             return;
         }
 
@@ -277,39 +306,51 @@ public class Load {
             File file = new File(destFiles[i]);
             String name = file.getName();
             String destName = name.replace(argBean.getOldName(), argBean.getNewName());
-            File fileDest = new File(file.getParentFile(),destName);
-            Log.println(fileDest.getAbsoluteFile());
-            if(fileDest.exists()){
-                Log.println(String.format("文件%s已存在，停止拷贝操作",fileDest.getAbsolutePath()));
+            File fileDest = new File(file.getParentFile(), destName);
+            if (fileDest.exists()) {
+                Log.println(String.format("文件%s已存在，停止拷贝操作", fileDest.getAbsolutePath()));
                 return;
             }
             destFiles[i] = fileDest.getAbsolutePath();
         }
 
 
-
         boolean isCopyFaile = false;
         for (int i = 0; i < destFiles.length; i++) {
-            if(!FileWrite.copyFile(arrayList.get(i),destFiles[i])){
+            if (!FileWrite.copyFile(arrayList.get(i), destFiles[i])) {
                 isCopyFaile = true;
             }
         }
 
         //如果有文件Copy失败，删除所有已经Copy的文件
-        if(isCopyFaile){
+        if (isCopyFaile) {
             for (String destFile : destFiles) {
                 File file = new File(destFile);
-                if(file.exists()){
+                if (file.exists()) {
                     file.delete();
                 }
             }
-        }else{
+        } else {
             sCopyBean.addCopyFile(argBean);
-            FileWrite.writeFile(sCopyFilePath,sCopyBean);
+            FileWrite.writeFile(sCopyFilePath, sCopyBean);
         }
 
 
+    }
 
+    /**
+     * @param argBeanResult 返回当前的文件
+     * 文件的已经进行copy
+     */
+    private static boolean isOprate(ArgBean argBeanResult){
+        if (argBeanResult != null) {
+            Log.println("数据已经存在,上一次的拷贝信息为：");
+            Log.printlnXML(argBeanResult);
+            //用于换行
+            Log.println("");
+            return true;
+        }
+        return false;
     }
 
 

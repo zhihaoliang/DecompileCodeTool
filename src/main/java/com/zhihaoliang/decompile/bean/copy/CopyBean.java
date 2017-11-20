@@ -21,29 +21,11 @@ public class CopyBean {
      */
     @ElementList(inline = true, entry = "file", required = false)
     private ArrayList<ArgBean> argBeans;
-    /**
-     * <color name="a">#ff252525</color>
-     * 的集合
-     */
-    @ElementList(inline = true, entry = "content", required = false)
-    private ArrayList<CopyContent> copyContents;
-
-
-    public ArrayList<CopyContent> getCopyContents() {
-        return copyContents;
-    }
-
-    public void setCopyContents(ArrayList<CopyContent> copyContents) {
-        this.copyContents = copyContents;
-    }
 
     public ArrayList<ArgBean> getArgBeans() {
         return argBeans;
     }
 
-    public void setArgBeans(ArrayList<ArgBean> argBeans) {
-        this.argBeans = argBeans;
-    }
 
     public void addCopyFile(ArgBean argBean){
         if(argBeans == null){
