@@ -1,11 +1,14 @@
 package com.zhihaoliang.decompile;
 
+import com.google.gson.Gson;
 import com.zhihaoliang.decompile.bean.ArgBean;
 import com.zhihaoliang.decompile.bean.ConfigBean;
 import com.zhihaoliang.decompile.bean.copy.CopyBean;
 import com.zhihaoliang.decompile.bean.res.Resources;
 import com.zhihaoliang.decompile.bean.res.Res;
 import com.zhihaoliang.decompile.util.*;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -20,6 +23,8 @@ import java.util.Scanner;
  *         工程的主类用于加载文件，接受用户的输入，并输出结果
  */
 public class Load {
+
+    private static final Logger LOG = LogManager.getLogger(Load.class);
     /**
      * 表示要输入的提示的用户输入的
      */
@@ -75,17 +80,16 @@ public class Load {
         if (CONFIG_BEAN == null) {
             return;
         }
-
-        Log.println("加载中...");
+        LOG.info("加载中...");
         load();
-        Log.println("加载完成");
-        Log.println(USER_USE);
+        LOG.info("加载完成");
+        LOG.info(USER_USE);
 
         while (true) {
             Scanner scan = new Scanner(System.in);
             String read = scan.nextLine();
             if ("exit".equalsIgnoreCase(read)) {
-                Log.println("程序解析完成");
+                LOG.fatal("程序解析完成");
                 return;
             }
             oprateSystemLine(read);
@@ -123,7 +127,7 @@ public class Load {
                 SRC_COLOR.add(res);
             }
 
-            Log.println(String.format("原文件%s加载完成", s));
+            LOG.info(String.format("原文件%s加载完成", s));
         }
         arrayList = FileFind.fileValueFind(CONFIG_BEAN.getDestPath());
         for (String s : arrayList) {
@@ -148,7 +152,7 @@ public class Load {
                 DEST_COLOR.add(res);
             }
 
-            Log.println(String.format("目标文件%s加载完成", s));
+            LOG.info(String.format("目标文件%s加载完成", s));
         }
     }
 
@@ -181,7 +185,7 @@ public class Load {
                 }
                 break;
             default:
-                Log.println(USER_USE);
+                LOG.info(USER_USE);
                 break;
         }
     }
@@ -244,12 +248,12 @@ public class Load {
 
     private static void copyContent(ArrayList<Res> resList, ArgBean argBean) {
         if (!argBean.isCopy()) {
-            Log.println(resList);
+            LOG.fatal(new Gson().toJson(resList));
             return;
         }
 
         if (resList == null || resList.size() == 0) {
-            Log.println("没有找到要拷贝的文件");
+            LOG.fatal("没有找到要拷贝的文件");
             return;
         }
 
@@ -261,9 +265,8 @@ public class Load {
 
         ArrayList<Res> desList = getRes(argBean, true);
         if (desList != null && desList.size() > 0) {
-            Log.println(String.format("名字\"%s\"已经存在当前文件中：",argBean.getNewName()));
-            Log.printlnXML(argBean);
-            Log.println("");
+            LOG.fatal(String.format("名字\"%s\"已经存在当前文件中：",argBean.getNewName()));
+            LOG.fatal(XmlParser.ob2Str(argBean));
             return;
         }
 
@@ -274,23 +277,27 @@ public class Load {
             if (resource == null) {
                 resource = new Resources();
             }
-            resource.addRes(res, argBean.getState());
+            Res add = new Res();
+            add.setName(argBean.getNewName());
+            add.setValue(res.getValue());
+            resource.addRes(add, argBean.getState());
             FileWrite.writeFile(destFilePath, resource);
         }
 
         sCopyBean.addCopyFile(argBean);
         FileWrite.writeFile(sCopyFilePath, sCopyBean);
+        LOG.fatal("内容copy完成");
 
     }
 
     private static void copyFile(ArrayList<String> arrayList, ArgBean argBean) {
         if (!argBean.isCopy()) {
-            Log.println(arrayList);
+            LOG.fatal(new Gson().toJson(arrayList));
             return;
         }
 
         if (arrayList == null || arrayList.size() == 0) {
-            Log.println("没有找到要拷贝的文件");
+            LOG.fatal("没有找到要拷贝的文件");
             return;
         }
 
@@ -308,7 +315,7 @@ public class Load {
             String destName = name.replace(argBean.getOldName(), argBean.getNewName());
             File fileDest = new File(file.getParentFile(), destName);
             if (fileDest.exists()) {
-                Log.println(String.format("文件%s已存在，停止拷贝操作", fileDest.getAbsolutePath()));
+                LOG.fatal(String.format("文件%s已存在，停止拷贝操作", fileDest.getAbsolutePath()));
                 return;
             }
             destFiles[i] = fileDest.getAbsolutePath();
@@ -344,10 +351,8 @@ public class Load {
      */
     private static boolean isOprate(ArgBean argBeanResult){
         if (argBeanResult != null) {
-            Log.println("数据已经存在,上一次的拷贝信息为：");
-            Log.printlnXML(argBeanResult);
-            //用于换行
-            Log.println("");
+            LOG.fatal("数据已经存在,上一次的拷贝信息为：");
+            LOG.fatal(XmlParser.ob2Str(argBeanResult));
             return true;
         }
         return false;

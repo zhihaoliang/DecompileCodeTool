@@ -89,8 +89,4 @@ public class MyFileFilter implements FilenameFilter {
         return false;
     }
 
-    public static final void main(String[] args) {
-        Log.println(getFileName("hello.txt"));
-        Log.println(getFileName("hello1.txt"));
-    }
 }

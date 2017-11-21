@@ -1,5 +1,7 @@
 package com.zhihaoliang.decompile.util;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
@@ -13,6 +15,8 @@ import java.io.*;
  *         文件的写入
  */
 public class FileWrite {
+
+    private static Logger logger = LogManager.getLogger(FileWrite.class);
     /**
      * @param filePath 要写入的文件路径
      * @param object   要写入的对象
@@ -51,7 +55,7 @@ public class FileWrite {
     public static boolean copyFile(String sourcePath, String destPath) {
         File destFile = new File(destPath);
         if (destFile.exists()) {
-            Log.println(String.format("文件拷贝失败，失败原因：%s文件已经存在", destPath));
+            logger.error(String.format("文件拷贝失败，失败原因：%s文件已经存在", destPath));
             return false;
         }
 
@@ -63,7 +67,7 @@ public class FileWrite {
         try {
             destFile.createNewFile();
         } catch (IOException e) {
-            Log.println(String.format("文件%s创建失败，失败原因%s", destPath, e.toString()));
+            logger.error(String.format("文件%s创建失败，失败原因%s", destPath, e.toString()));
             e.printStackTrace();
             return false;
         }
@@ -79,7 +83,7 @@ public class FileWrite {
                 output.write(buf, 0, bytesRead);
             }
         } catch (Exception e) {
-            Log.println(String.format("文件%s写入失败,失败原因", destPath, e.toString()));
+            logger.error(String.format("文件%s写入失败,失败原因", destPath, e.toString()));
             return false;
         } finally {
             try {
@@ -94,7 +98,7 @@ public class FileWrite {
             }
 
         }
-        Log.println(String.format("文件%s拷贝到%s成功", sourcePath, destPath));
+        logger.error(String.format("文件%s拷贝到%s成功", sourcePath, destPath));
         return true;
     }
 

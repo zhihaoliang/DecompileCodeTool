@@ -1,11 +1,12 @@
 package com.zhihaoliang.decompile.util;
 
-import com.zhihaoliang.decompile.bean.ConfigBean;
 import com.zhihaoliang.decompile.bean.copy.CopyBean;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.filter.SystemFilter;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
@@ -18,6 +19,8 @@ import java.io.IOException;
 public class XmlParser<T> {
 
     private static  XmlParser instance;
+
+    private static Logger logger = LogManager.getLogger(XmlParser.class);
 
 
     public static XmlParser getInstance(){
@@ -35,7 +38,7 @@ public class XmlParser<T> {
         try {
             return (T) new Persister().read(t.getClass(),new File(filePath));
         } catch (Exception e) {
-            Log.println(String.format("文件%s解析失败,失败原因%s",filePath,e.toString()));
+            logger.error(String.format("文件%s解析失败,失败原因%s",filePath,e.toString()));
         }
         return null;
     }
@@ -58,23 +61,25 @@ public class XmlParser<T> {
         try {
             return  new Persister().read(CopyBean.class,new File(filePath));
         } catch (Exception e) {
-            Log.println(String.format("文件%s解析失败,失败原因%s",filePath,e.toString()));
+            logger.error(String.format("文件%s解析失败,失败原因%s",filePath,e.toString()));
         }
         return null;
     }
 
-    public static final void main(String[] args){
-        ConfigBean configBean = (ConfigBean) XmlParser.getInstance().parser("Config.xml",new ConfigBean());
-        String copyName = MD5.MD5Encode(configBean.getSrcPath() + configBean.getDestPath()) + ".xml";
-        File file = new File(new File(configBean.getSrcPath()), copyName);
-        String copyFilePath = file.getAbsolutePath();
 
+    public static String ob2Str(Object object) {
+        if (object == null) {
+            return  "object is null";
+        }
         Serializer serializer = new Persister();
         try {
-            serializer.write(copyFilePath, System.out);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            serializer.write(object, baos);
+            return baos.toString();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return  "object is null";
     }
 
 }
