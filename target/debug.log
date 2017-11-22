@@ -1,63 +1,73 @@
-2017-11-21 14:07:48  [ main:0 ] - [ INFO ]  加载中...
-2017-11-21 14:07:48  [ main:36 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/arrays.xml加载完成
-2017-11-21 14:07:48  [ main:71 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/attrs.xml加载完成
-2017-11-21 14:07:48  [ main:133 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/colors.xml加载完成
-2017-11-21 14:07:48  [ main:205 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:211 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/drawables.xml加载完成
-2017-11-21 14:07:48  [ main:253 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/ids.xml加载完成
-2017-11-21 14:07:48  [ main:255 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/integers.xml加载完成
-2017-11-21 14:07:48  [ main:257 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/plurals.xml加载完成
-2017-11-21 14:07:48  [ main:390 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/public.xml加载完成
-2017-11-21 14:07:48  [ main:392 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/raws.xml加载完成
-2017-11-21 14:07:48  [ main:418 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/stingxml.xml加载完成
-2017-11-21 14:07:48  [ main:467 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/strings.xml加载完成
-2017-11-21 14:07:48  [ main:486 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/styles.xml加载完成
-2017-11-21 14:07:48  [ main:497 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-1280x720/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:499 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-1280x720/integers.xml加载完成
-2017-11-21 14:07:48  [ main:514 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-1800x1080/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:517 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-400dpi-1800x1080-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:523 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-420dpi-1920x1080-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:537 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-480x320/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:540 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-560dpi-2560x1440-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:546 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-640x480/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:554 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-800x480/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:560 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-854x480/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:565 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-960x540/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:574 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-960x640/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:581 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-hdpi-1280x720-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:590 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-hdpi-960x540-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:600 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-hdpi-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:606 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-hdpi-v4/strings.xml加载完成
-2017-11-21 14:07:48  [ main:608 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-ldpi-320x240-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:615 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-ldpi-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:618 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-ldpi-v4/strings.xml加载完成
-2017-11-21 14:07:48  [ main:620 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-ldpi-v4/styles.xml加载完成
-2017-11-21 14:07:48  [ main:623 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-mdpi-1024x600-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:625 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-mdpi-480x320-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:628 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-mdpi-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:630 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-mdpi-v4/styles.xml加载完成
-2017-11-21 14:07:48  [ main:633 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-nodpi-1800x1080-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:635 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-v21/styles.xml加载完成
-2017-11-21 14:07:48  [ main:639 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-1184x720-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:647 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-1184x768-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:659 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-1280x720-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:673 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-1280x800-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:678 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-1776x1080-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:680 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-1800x1080-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:687 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-1920x1080-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:688 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-1920x1080-v4/integers.xml加载完成
-2017-11-21 14:07:48  [ main:690 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-854x480-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:701 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-960x640-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:705 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:707 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-v4/strings.xml加载完成
-2017-11-21 14:07:48  [ main:709 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xxhdpi-1800x1080-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:713 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xxhdpi-1920x1080-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:719 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xxhdpi-2560x1440-v4/strings.xml加载完成
-2017-11-21 14:07:48  [ main:731 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xxhdpi-v4/dimens.xml加载完成
-2017-11-21 14:07:48  [ main:734 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xxhdpi-v4/strings.xml加载完成
-2017-11-21 14:07:49  [ main:746 ] - [ INFO ]  目标文件/Users/haoliang/Desktop/temp/res/values/strings.xml加载完成
-2017-11-21 14:07:49  [ main:746 ] - [ INFO ]  加载完成
-2017-11-21 14:07:49  [ main:746 ] - [ INFO ]  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>搜索>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+2017-11-21 14:24:23  [ main:0 ] - [ INFO ]  加载中...
+2017-11-21 14:24:24  [ main:50 ] - [ ERROR ]  文件/Users/haoliang/Desktop/jingdong/jingdong_52563/1ccaddb38e875b6a21c984c2c8ee9d33.xml解析失败,失败原因javax.xml.stream.XMLStreamException: ParseError at [row,col]:[1,1]
+Message: 文件提前结束。
+2017-11-21 14:24:24  [ main:71 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/arrays.xml加载完成
+2017-11-21 14:24:24  [ main:146 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/attrs.xml加载完成
+2017-11-21 14:24:24  [ main:300 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/colors.xml加载完成
+2017-11-21 14:24:24  [ main:443 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/dimens.xml加载完成
+2017-11-21 14:24:24  [ main:474 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/drawables.xml加载完成
+2017-11-21 14:24:24  [ main:604 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/ids.xml加载完成
+2017-11-21 14:24:24  [ main:606 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/integers.xml加载完成
+2017-11-21 14:24:24  [ main:608 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/plurals.xml加载完成
+2017-11-21 14:24:24  [ main:914 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/public.xml加载完成
+2017-11-21 14:24:24  [ main:927 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/raws.xml加载完成
+2017-11-21 14:24:24  [ main:964 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/stingxml.xml加载完成
+2017-11-21 14:24:25  [ main:1084 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/strings.xml加载完成
+2017-11-21 14:24:25  [ main:1116 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/styles.xml加载完成
+2017-11-21 14:24:25  [ main:1134 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-1280x720/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1137 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-1280x720/integers.xml加载完成
+2017-11-21 14:24:25  [ main:1145 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-1800x1080/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1150 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-400dpi-1800x1080-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1155 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-420dpi-1920x1080-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1162 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-480x320/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1165 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-560dpi-2560x1440-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1168 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-640x480/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1218 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-800x480/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1226 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-854x480/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1234 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-960x540/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1242 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-960x640/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1246 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-hdpi-1280x720-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1249 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-hdpi-960x540-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1256 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-hdpi-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1259 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-hdpi-v4/strings.xml加载完成
+2017-11-21 14:24:25  [ main:1263 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-ldpi-320x240-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1268 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-ldpi-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1271 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-ldpi-v4/strings.xml加载完成
+2017-11-21 14:24:25  [ main:1273 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-ldpi-v4/styles.xml加载完成
+2017-11-21 14:24:25  [ main:1317 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-mdpi-1024x600-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1324 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-mdpi-480x320-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1327 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-mdpi-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1333 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-mdpi-v4/styles.xml加载完成
+2017-11-21 14:24:25  [ main:1338 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-nodpi-1800x1080-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1342 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-v21/styles.xml加载完成
+2017-11-21 14:24:25  [ main:1349 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-1184x720-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1359 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-1184x768-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1380 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-1280x720-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1399 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-1280x800-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1425 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-1776x1080-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1427 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-1800x1080-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1445 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-1920x1080-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1449 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-1920x1080-v4/integers.xml加载完成
+2017-11-21 14:24:25  [ main:1451 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-854x480-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1457 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-960x640-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1463 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1465 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-v4/strings.xml加载完成
+2017-11-21 14:24:25  [ main:1468 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xxhdpi-1800x1080-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1470 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xxhdpi-1920x1080-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1472 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xxhdpi-2560x1440-v4/strings.xml加载完成
+2017-11-21 14:24:25  [ main:1479 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xxhdpi-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1482 ] - [ INFO ]  原文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xxhdpi-v4/strings.xml加载完成
+2017-11-21 14:24:25  [ main:1487 ] - [ INFO ]  目标文件/Users/haoliang/github/BasicFrame/app/src/main/res/values/colors.xml加载完成
+2017-11-21 14:24:25  [ main:1490 ] - [ INFO ]  目标文件/Users/haoliang/github/BasicFrame/app/src/main/res/values/strings.xml加载完成
+2017-11-21 14:24:25  [ main:1492 ] - [ INFO ]  目标文件/Users/haoliang/github/BasicFrame/app/src/main/res/values/styles.xml加载完成
+2017-11-21 14:24:25  [ main:1495 ] - [ INFO ]  目标文件/Users/haoliang/github/BasicFrame/app/src/main/res/values-420dpi-1920x1080-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1497 ] - [ INFO ]  目标文件/Users/haoliang/github/BasicFrame/app/src/main/res/values-560dpi-2560x1440-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1504 ] - [ INFO ]  目标文件/Users/haoliang/github/BasicFrame/app/src/main/res/values-hdpi-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1507 ] - [ INFO ]  目标文件/Users/haoliang/github/BasicFrame/app/src/main/res/values-mdpi-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1514 ] - [ INFO ]  目标文件/Users/haoliang/github/BasicFrame/app/src/main/res/values-xhdpi-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1516 ] - [ INFO ]  目标文件/Users/haoliang/github/BasicFrame/app/src/main/res/values-xxhdpi-v4/dimens.xml加载完成
+2017-11-21 14:24:25  [ main:1517 ] - [ INFO ]  加载完成
+2017-11-21 14:24:25  [ main:1517 ] - [ INFO ]  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>搜索>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
 例如输入"@string/name"表示要搜索string为name的字段
 例如输入"@layout/name"表示layout的文件件名字为name的所有文件
 例如输入文件的名字"fileName"或"fileName.xml"或"fileName.png"搜素res中名字相同的文件
@@ -65,5 +75,33 @@
 例如输入"@layout/name ture newName"表示将搜索的内容的拷贝到队形文件中，并重命名
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>搜索>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
 
-2017-11-21 14:08:57  [ main:69437 ] - [ FATAL ]  [{"filePath":"/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/strings.xml","name":"a","value":"确定"}]
-2017-11-21 14:11:04  [ main:195781 ] - [ FATAL ]  程序解析完成
+2017-11-21 14:24:42  [ main:18519 ] - [ FATAL ]  ["/Users/haoliang/Desktop/jingdong/jingdong_52563/res/drawable/so.xml"]
+2017-11-21 14:26:32  [ main:128928 ] - [ FATAL ]  []
+2017-11-21 14:26:59  [ main:155458 ] - [ FATAL ]  []
+2017-11-21 14:27:09  [ main:165920 ] - [ FATAL ]  [{"filePath":"/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/colors.xml","name":"a","value":"#ff252525"}]
+2017-11-21 14:28:21  [ main:237631 ] - [ FATAL ]  []
+2017-11-21 14:29:23  [ main:299060 ] - [ INFO ]  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>搜索>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+例如输入"@string/name"表示要搜索string为name的字段
+例如输入"@layout/name"表示layout的文件件名字为name的所有文件
+例如输入文件的名字"fileName"或"fileName.xml"或"fileName.png"搜素res中名字相同的文件
+例如输入"@layout/name ture"表示将搜索的内容的拷贝到队形文件中
+例如输入"@layout/name ture newName"表示将搜索的内容的拷贝到队形文件中，并重命名
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>搜索>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+
+2017-11-21 14:29:36  [ main:312496 ] - [ INFO ]  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>搜索>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+例如输入"@string/name"表示要搜索string为name的字段
+例如输入"@layout/name"表示layout的文件件名字为name的所有文件
+例如输入文件的名字"fileName"或"fileName.xml"或"fileName.png"搜素res中名字相同的文件
+例如输入"@layout/name ture"表示将搜索的内容的拷贝到队形文件中
+例如输入"@layout/name ture newName"表示将搜索的内容的拷贝到队形文件中，并重命名
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>搜索>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+
+2017-11-21 14:31:01  [ main:397311 ] - [ FATAL ]  [{"filePath":"/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-420dpi-1920x1080-v4/dimens.xml","name":"aoe","value":"45.0dip"},{"filePath":"/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-560dpi-2560x1440-v4/dimens.xml","name":"aoe","value":"45.0dip"},{"filePath":"/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-hdpi-v4/dimens.xml","name":"aoe","value":"36.0dip"},{"filePath":"/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-mdpi-v4/dimens.xml","name":"aoe","value":"30.0dip"},{"filePath":"/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xhdpi-v4/dimens.xml","name":"aoe","value":"39.0dip"},{"filePath":"/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values-xxhdpi-v4/dimens.xml","name":"aoe","value":"39.0dip"}]
+2017-11-21 14:31:33  [ main:429028 ] - [ FATAL ]  ["/Users/haoliang/Desktop/jingdong/jingdong_52563/res/drawable/sp.xml"]
+2017-11-21 14:33:01  [ main:517433 ] - [ ERROR ]  文件/Users/haoliang/Desktop/jingdong/jingdong_52563/res/drawable/sp.xml拷贝到/Users/haoliang/github/BasicFrame/app/src/main/res/drawable/main_agree_button_bg.xml成功
+2017-11-21 14:34:16  [ main:592553 ] - [ FATAL ]  [{"filePath":"/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/strings.xml","name":"avd","value":"同意"}]
+2017-11-21 14:34:32  [ main:608710 ] - [ FATAL ]  内容copy完成
+2017-11-21 14:36:35  [ main:731231 ] - [ FATAL ]  [{"filePath":"/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/strings.xml","name":"avg","value":"感谢您下载京东！当您开始使用本软件时，我们可能会对您的部分个人信息进行收集、使用和共享。请您仔细阅读《京东隐私政策》并确定了解我们对您个人信息的处理规则，包括："}]
+2017-11-21 14:37:15  [ main:771915 ] - [ FATAL ]  内容copy完成
+2017-11-21 14:38:43  [ main:859262 ] - [ FATAL ]  [{"filePath":"/Users/haoliang/Desktop/jingdong/jingdong_52563/res/values/strings.xml","name":"avh","value":"\"我们如何收集和使用您的个人信息\n我们如何使用 Cookie 和同类技术\n我们如何共享、转让、公开您的个人信息\n我们如何保护和保留您的个人信息\n您如何管理个人信息\n未成年人信息的保护\n如何联系我们\""}]
+2017-11-21 14:39:35  [ main:911664 ] - [ FATAL ]  内容copy完成
